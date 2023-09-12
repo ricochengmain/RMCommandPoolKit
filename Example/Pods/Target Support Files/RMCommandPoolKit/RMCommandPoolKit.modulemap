@@ -1,0 +1,6 @@
+framework module RMCommandPoolKit {
+  umbrella header "RMCommandPoolKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module Pods_RMCommandPoolKit_Tests {
+  umbrella header "Pods-RMCommandPoolKit_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
