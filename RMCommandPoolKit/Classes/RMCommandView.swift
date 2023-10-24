@@ -7,6 +7,8 @@
 
 import UIKit
 
+var commandKey: UInt8 = 0
+
 extension UIView: RMCommandPoolProtocol {
     
     public func addCommandView(_ view: UIView) {
@@ -18,10 +20,10 @@ extension UIView: RMCommandPoolProtocol {
     
     public var command: ((RMCommandPool) -> Void)? {
         get {
-            return objc_getAssociatedObject(self, &AssociatedKeys.command) as? ((RMCommandPool) -> Void)
+            return objc_getAssociatedObject(self, &commandKey) as? ((RMCommandPool) -> Void)
         }
         set {
-            objc_setAssociatedObject(self, &AssociatedKeys.command, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &commandKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             
             for subview in self.subviews {
                 if subview.command == nil {
@@ -29,9 +31,5 @@ extension UIView: RMCommandPoolProtocol {
                 }
             }
         }
-    }
-    
-    private struct AssociatedKeys {
-        static var command = "RMCommandPoolKit"
     }
 }
